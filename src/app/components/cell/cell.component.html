@@ -1,0 +1,10 @@
+<div id="board-container">
+  <div id="board">
+    <div class="cell"
+         [class.empty]="cell.status === 'empty'"
+         [class.wrong]="cell.status === 'wrong'"
+         [class.exists]="cell.status === 'exists'"
+         [class.exact]="cell.status === 'exact'"
+    >{{cell.content}}</div>
+  </div>
+</div>
