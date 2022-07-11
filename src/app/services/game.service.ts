@@ -18,7 +18,7 @@ export class GameService {
       gussWord: "",
       randomWord: this.drawWord()
     };
-
+    console.log(board.randomWord);
     return board;
   }
 
@@ -58,8 +58,9 @@ export class GameService {
 
     for (let letIndex = 0; letIndex < 5; letIndex++) {
       let letter: string = board.gussWord.charAt(letIndex);
-      board.cells[board.filledRows][letIndex].content = letter;
-      this.setCellStatus(board.randomWord, letter, letIndex);
+      let cell: Cell = board.cells[board.filledRows][letIndex];
+      cell.content = letter;
+      cell.status = this.getCellStatus(board.randomWord, letter, letIndex);
     }
 
     board.filledRows++;
@@ -84,7 +85,7 @@ export class GameService {
     return WORDS.includes(word);
   }
 
-  public setCellStatus(drawWord: string, letter: string, letIndex: number): "empty" | "wrong" | "exists" | "exact" {
+  public getCellStatus(drawWord: string, letter: string, letIndex: number): "empty" | "wrong" | "exists" | "exact" {
     if (drawWord.charAt(letIndex) === letter)
       return "exact";
 

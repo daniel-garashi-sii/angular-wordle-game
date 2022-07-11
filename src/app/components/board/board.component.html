@@ -1,8 +1,7 @@
 <div class="board_container">
-  <div class="board" *ngFor="let rows of board.cells">
-    <div class="cell"
-         *ngFor="let cell of rows">
-      {{cell.content}}
+  <div class="board" *ngFor="let cells of board.cells">
+    <div *ngFor="let cell of cells">
+      <app-cell [cell]="cell"></app-cell>
     </div>
   </div>
 </div>

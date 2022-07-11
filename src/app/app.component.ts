@@ -27,7 +27,6 @@ export class AppComponent {
     this.guess = "";
     this.isWin = false;
     this.isLose = false;
-    console.log(this.board.randomWord);
   }
 
   public addGuess(guessInput: HTMLInputElement) {
