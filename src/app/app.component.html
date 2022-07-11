@@ -1,13 +1,35 @@
 <app-title [title]="title"></app-title>
 <hr/>
 <div #game>
-  <h1>Enter the next guess</h1>
-  <input #guess_input type="text" maxlength="5" placeholder="YOUR GUESS HERE">
-  <!--<app-guess (guess)="addGuess($event)"></app-guess>-->
 
-  <button #ok_btn class="btn" (click)="addGuess(guess_input.value)">OK</button>
+  <h1>Enter the next guess</h1>
+  <input #guess_input type="text" maxlength="5" placeholder="YOUR GUESS HERE" [disabled]="isWin || isLose">
+  <button #ok_btn class="btn" (click)="addGuess(guess_input)" [disabled]="isWin || isLose">OK</button>
+
+  <div *ngIf="errorMsg">
+    <label>{{errorMsg}}</label>
+    <br>
+  </div>
 
   <app-board [board]="board"></app-board>
 
-  <!--<button #reset_btn class="btn">Reset</button>-->
+  <div class="win" *ngIf="isWin">
+    <h2>Well Done</h2>
+    <p>You used {{board.filledRows}} Guesses</p>
+    <button #reset_btn
+            class="btn"
+            (click)="reset(guess_input)"> Reset
+    </button>
+  </div>
+
+  <div class="lose" *ngIf="isLose">
+    <h2>Nice try, but you missed it</h2>
+    <p>The correct guess was {{board.randomWord}}</p>
+    <button #reset_btn
+            class="btn"
+            (click)="reset(guess_input)"> Reset
+    </button>
+  </div>
+
+
 </div>
